@@ -4,7 +4,7 @@ tasks_per_node: 8
 data:
   dataset_type: VideoDataset
   datasets:
-    - ../../video.csv
+    - /Users/euijaekim/Projects/jepa/video.csv
     # - /your_path_to_kinetics710_csv_file_index.csv
     # - /your_path_to_ssv2_csv_file_index.csv
     # - /your_path_to_howto100m_csv_file_index.csv
@@ -32,7 +32,7 @@ data_aug:
   reprob: 0.0
 logging:
   # folder: /your_absolute_file_path_for_saving_logs_and_checkpoints/
-  folder: ../../logs/
+  folder: /Users/euijaekim/Projects/jepa/logs/
   write_tag: jepa
 loss:
   loss_exp: 1.0
