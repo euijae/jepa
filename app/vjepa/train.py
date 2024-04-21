@@ -25,6 +25,7 @@ import torch
 import torch.multiprocessing as mp
 import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel
+import torch.distributed as dist
 
 from src.datasets.data_manager import init_data
 from src.masks.random_tube import MaskCollator as TubeMaskCollator
@@ -277,6 +278,8 @@ def main(args, resume_preempt=False):
     logger.info(f'iterations per epoch/dataest length: {ipe}/{_dlen}')
 
     # -- init optimizer and scheduler
+    dist.init_process_group(backend='gloo', rank=rank, world_size=4)  # world_size should be the total number of processes
+    # dist.init_process_group(backend='gloo')  # 'gloo' is one of the supported backends
     optimizer, scaler, scheduler, wd_scheduler = init_opt(
         encoder=encoder,
         predictor=predictor,
@@ -295,6 +298,7 @@ def main(args, resume_preempt=False):
     encoder = DistributedDataParallel(encoder, static_graph=True)
     predictor = DistributedDataParallel(predictor, static_graph=True)
     target_encoder = DistributedDataParallel(target_encoder)
+    dist.destroy_process_group()
     for p in target_encoder.parameters():
         p.requires_grad = False
 
