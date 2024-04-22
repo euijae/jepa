@@ -1,5 +1,4 @@
 .*.swp
 *.pyc
-logs/
 jepa.egg-info/
 dist/
