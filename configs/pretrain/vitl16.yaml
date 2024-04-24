@@ -4,7 +4,7 @@ tasks_per_node: 8
 data:
   dataset_type: VideoDataset
   datasets:
-    - /scratch/ek3955/pytorch-example/video.csv
+    - /scratch/ek3955/pytorch-example/jepa/video.csv
     # - /content/jepa/video.csv
     # /Users/euijaekim/Projects/jepa/video.csv
     # - /your_path_to_kinetics710_csv_file_index.csv
@@ -35,7 +35,7 @@ data_aug:
 logging:
   # folder: /your_absolute_file_path_for_saving_logs_and_checkpoints/
   # /Users/euijaekim/Projects/jepa/logs/
-  folder: /scratch/ek3955/pytorch-example/logs/
+  folder: /scratch/ek3955/pytorch-example/jepa/logs/
   write_tag: jepa
 loss:
   loss_exp: 1.0
